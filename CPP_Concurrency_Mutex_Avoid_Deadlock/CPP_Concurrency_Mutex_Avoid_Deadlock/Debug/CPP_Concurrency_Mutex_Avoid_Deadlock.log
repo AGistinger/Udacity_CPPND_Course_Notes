@@ -1,0 +1,3 @@
+﻿  CPP_Concurrency_Mutex_Avoid_Deadlock.cpp
+C:\Users\gistadr\source\repos\CPP_Concurrency_Mutex_Avoid_Deadlock\CPP_Concurrency_Mutex_Avoid_Deadlock\CPP_Concurrency_Mutex_Avoid_Deadlock.cpp(54,17): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  CPP_Concurrency_Mutex_Avoid_Deadlock.vcxproj -> C:\Users\gistadr\source\repos\CPP_Concurrency_Mutex_Avoid_Deadlock\Debug\CPP_Concurrency_Mutex_Avoid_Deadlock.exe
