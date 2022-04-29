@@ -1,0 +1,72 @@
+#include <cassert>
+#include <stdexcept>
+#include <string>
+#include <iostream>
+
+// TODO: Define "Student" class
+class Student {
+ public:
+  // constructor
+    Student(std::string name, int grade, double GPA)
+        : name{name}
+    {
+        set_grade(grade);
+        set_GPA(GPA);
+    }
+    
+  // accessors
+    std::string get_name() const { return name; }
+    int get_grade() const { return grade; }
+    double get_GPA() const { return GPA; }
+    
+  // mutators
+    void set_name(std::string name) { this->name = name; }
+    
+    void set_grade(int grade)
+    {
+        if(grade >= 0 && grade <= 12)
+        {
+            this->grade = grade;
+        }
+        else
+        {
+            throw std::string {"Grade outside of range"};
+        }
+    }
+    
+    void set_GPA(double GPA)
+    {
+        if(GPA >= 0.0 && GPA <= 4.0)
+        {
+            this->GPA = GPA;
+        }
+        else
+        {
+            throw std::string {"GPA outside of range"};
+        }
+    }
+    
+ private:
+  // name
+    std::string name;
+  // grade
+    int grade;
+  // GPA
+    double GPA;
+};
+
+// TODO: Test
+int main()
+{
+    try
+    {
+        Student jess {"Jessica", 11, 3.1};
+        //Student joe {"Joe", 13, 3.0};
+        Student jaun {"Jaun", 8, 5.7};
+    }
+    catch(std::string &err)
+    {
+        std::cerr << "Caught Error: " << err << std::endl;
+    }
+    return 0;
+}

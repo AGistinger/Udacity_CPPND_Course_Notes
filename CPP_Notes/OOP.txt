@@ -1,0 +1,200 @@
+---Object Oriented Programming---
+
+Classes are the fundamental unit of object oriented programming in C++.
+Classes allow engineers to create user defined types.
+
+--Jupyter with C++
+*save files as filename.cpp in a folder called /code
+*to compile using C++17 standard run: g++ -std=c++17 ./code/filename.cpp
+*to run the file: ./a.out
+
+--Assert function--
+assert(expression) function is used to determine if the expression is true or not, if the expression evaluates to false/0 then the abort() function is called.  Assertions are disabled at run-time so you do not want to have statments that can cause changes to variables in the assert function.
+You can remove assertions at compile time using #define NDEBUG
+
+--Structures--
+structs allow developers to create their own user-defined types to aggregate data relevant to their needs.
+
+ex)
+struct Rectangle
+{
+	float length;
+	float width;
+};
+
+Rectangle rectangle;
+
+ex)
+struct Date
+{
+	int day;
+	int month;
+	int year;
+};
+
+Date date;
+date.day = 1;
+date.month = 10;
+date.year = 2019;
+
+--Access Specifiers--
+*public/private
+*by default all members of a structure are public/private
+*public members can be changed directly by any user of the object
+*private members can only be changed by the object itself
+*protected members are accessible from other member functions of the same class and derived class.
+ex)
+struct Date
+{
+ private:
+	int day {1};
+	int month {1};
+	int year {0};
+ public:
+	int get_day() { return day; }
+	void set_day(int day) 
+	{ 
+		if(day >= 1)
+		{
+			this->day = day; 
+		}
+	}
+};
+
+--Classes---
+*You want to use a class when you have members that have limitations on them and the members are private.
+*Invariant - is a rule that limits the values of member variables
+*All class members are private by default
+ex)
+class Date
+{
+public:
+	int Day() { return day; }
+	void Day(int d)
+	{
+		if(d >= 1 && d <= 31)
+		{
+			day = d;
+		}
+	}
+private:
+	int day {1};
+	int month {1};
+	int year {0};
+}
+
+--Constructors---
+*construct objects of a class
+*default constructor takes no arguments
+*the constructor should initialize the data members of the class
+ex)
+	Date(int day, int month, int year)
+	{
+		set_day(day);  //calls custom function to determine if day >= 1
+		set_month(month); //calsl custom function to determine if month <= 12
+		set_year(year);
+	}
+		
+--Scope Resolution---
+*Tell the compiler and other programers that a particular identifier is associated with a particular scope
+ex)
+Date::Date(int d, int m, int y)
+	: day{d}, month{m}, year{y}
+	{
+	}
+ex)
+	Person::move(); \\ Call the move the function that is a member of the Person class.
+	std::map m; \\ Initialize the map container from the C++ Standard Library.  
+
+--Initializer List--
+*Objects are initialize member variables before the class constructor runs
+ex)
+Date(int day, int month, int year)
+		: year{year}
+		{
+			set_day(day); //checking invariant
+			set_month(month); //checking invariant
+		}
+		
+--Constant Members---
+*You can make the member variables constant
+ex) 
+	int const day; //constant variables
+*If you use an initializer list you can create the object with constant variables
+*You cannot use setter functions on const variables
+*You cannot check the invariants when using an initializer list
+*Might want Birthday to be a derived class of date
+
+--Encapsulation---
+*You want to group together similar data and logic in a single class
+*You do not want functions that are not needed for that particular class in the class
+
+ex)
+#include <cassert>
+
+class Date {
+public:
+  Date(int day, int month, int year);
+  int Day() const { return day_; }
+  void Day(int day);
+  int Month() const { return month_; }
+  void Month(int month);
+  int Year() const { return year_; }
+  void Year(int year);
+
+private:
+  bool LeapYear(int year) const;
+  int DaysInMonth(int month, int year) const;
+  int day_{1};
+  int month_{1};
+  int year_{0};
+};
+
+Date::Date(int day, int month, int year) {
+  Year(year);
+  Month(month);
+  Day(day);
+}
+
+bool Date::LeapYear(int year) const {
+    if(year % 4 != 0)
+        return false;
+    else if(year % 100 != 0)
+        return true;
+    else if(year % 400 != 0)
+        return false;
+    else
+        return true;
+}
+
+int Date::DaysInMonth(int month, int year) const {
+    if(month == 2)
+        return LeapYear(year) ? 29 : 28;
+    else if(month == 4 || month == 6 || month == 9 || month == 11)
+        return 30;
+    else
+        return 31;
+}
+
+void Date::Day(int day) {
+  if (day >= 1 && day <= DaysInMonth(Month(), Year()))
+    day_ = day;
+}
+
+void Date::Month(int month) {
+  if (month >= 1 && month <= 12)
+    month_ = month;
+}
+
+void Date::Year(int year) { year_ = year; }
+
+--Accesor Functions---
+(getters)
+*Accessor functions are public member functions that allow users to access an object's data
+*Accessors should only retrieve data they shoudln't change the stored object
+*add const to forbid the changing of data
+
+--Mutator Functions---
+(setters)
+*public member functions that allow you to change the state of an object
+*you want to create a mutator if there is an invariant of the class and needs a custom function to change the value within logic, limit the value to what is valid for the class.

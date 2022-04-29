@@ -1,0 +1,167 @@
+---Classes and Object-Oriented Programming---
+
+Code without Objects
+Suppose you were writing a program to model several cars. In your program, you want to keep track of each car's color and the distance the car has traveled, and you want to be able to increment this distance and print out the car's properties. You could write something like the code below to accomplish this:
+
+int main() 
+{
+    // Variables to hold each car's color.
+    string car_1_color = "green";
+    string car_2_color = "red";
+    string car_3_color = "blue";
+
+    // Variables to hold each car's initial position.
+    int car_1_distance = 0;
+    int car_2_distance = 0;
+    int car_3_distance = 0;
+
+    // Increment car_1's position by 1.
+    car_1_distance++;
+
+    // Print out the position and color of each car.
+    cout << "The distance that the " << car_1_color << " car 1 has traveled is: " << car_1_distance << "\n";
+    cout << "The distance that the " << car_2_color << " car 2 has traveled is: " << car_2_distance << "\n";
+    cout << "The distance that the " << car_3_color << " car 3 has traveled is: " << car_3_distance << "\n";
+
+}
+
+In the next cell, the code above has been rewritten with a Car class.
+
+#include <iostream>
+#include <string>
+using std::string;
+using std::cout;
+
+// The Car class
+class Car {
+  public:
+    // Method to print data.
+    void PrintCarData() 
+    {
+        cout << "The distance that the " << color << " car " << number << " has traveled is: " << distance << "\n";
+    }
+    
+    // Method to increment the distance travelled.
+    void IncrementDistance() 
+    {
+        distance++;
+    }
+    
+    // Class/object attributes
+    string color;
+    int distance = 0;
+    int number;
+};
+
+int main() 
+{
+    // Create class instances for each car.
+    Car car_1, car_2, car_3;
+
+    // Set each instance's color.
+    car_1.color = "green";
+    car_2.color = "red";
+    car_3.color = "blue";
+
+    // Set each instance's number.
+    car_1.number = 1;
+    car_2.number = 2;
+    car_3.number = 3;
+
+    // Increment car_1's position by 1.
+    car_1.IncrementDistance();
+
+    // Print out the position and color of each car.
+    car_1.PrintCarData();
+    car_2.PrintCarData();
+    car_3.PrintCarData();
+
+}
+
+This looks ok, and you have reduced the number of variables in main, so you might see how this could be more organized going forward. However, there is now a lot more code than you started with, and the main doesn't seem much more organzied. The code above still sets the attributes for each car after the car has been created.
+
+Adding a Constructor
+The best way to fix this is to add a constructor to the Car class. The constructor allows you to instantiate new objects with the data that you want. In the next code cell, we have added a constructor for Car that allows the number and color to be passed in. This means that each Car object can be created with those variables.
+
+#include <iostream>
+#include <string>
+using std::string;
+using std::cout;
+
+class Car {
+  public:
+    void PrintCarData() 
+    {
+        cout << "The distance that the " << color << " car " << number << " has traveled is: " << distance << "\n";
+    }
+
+    void IncrementDistance() 
+    {
+        distance++;
+    }
+    
+    // Adding a constructor here:
+    Car(string c, int n) 
+		:color{c}, number{n}
+		{
+		}
+		
+    string color;
+    int distance = 0;
+    int number;
+};
+
+int main() 
+{
+    // Create class instances for each car.
+    Car car_1 = Car("green", 1);
+    Car car_2 = Car("red", 2);
+    Car car_3 = Car("blue", 3);
+
+    // Increment car_1's position by 1.
+    car_1.IncrementDistance();
+
+    // Print out the position and color of each car.
+    car_1.PrintCarData();
+    car_2.PrintCarData();
+    car_3.PrintCarData();
+}
+
+If you were planning to build a larger program, at this point it might be good to put your class definition and function declarations into a separate file. Just as when we discussed header files before, putting the class definition into a separate header helps to organize your code, and prevents problems with trying to use class objects before the class is defined.
+
+There are two things to note in the code below.
+
+When the class methods are defined outside the class, the scope resolution operator :: must be used to indicate which class the method belongs to. For example, in the definition of the PrintCarData method you see:
+
+void Car::PrintCarData()
+This prevents any compiler issues if there are are two classes with methods that have the same name.
+
+We have changed how the constructor initializes the variables. Instead of the previous constructor:
+
+Car(string c, int n) {
+   color = c; 
+   number = n;
+}
+the constructor now uses an initializer list:
+
+Car(string c, int n) : color(c), number(n) {}
+Here, the class members are initialized before the body of the constructor (which is now empty). Initializer lists are a quick way to initialize many class attributes in the constructor. Additionally, the compiler treats attributes initialized in the list slightly differently than if they are initialized in the constructor body. For reasons beyond the scope of this course, if a class attribute is a reference, it must be initialized using an initializer list.
+
+Variables that don't need to be visible outside of the class are set as private. This means that they can not be accessed outside of the class, which prevents them from being accidentally changed.
+
+There is a lot going on in the code to unpack, including the new keyword and the -> operator. The arrow operator -> is used to simultaneously
+
+dereference a pointer to an object and
+access an attribute or method.
+For example, in the code below, cp is a pointer to a Car object, and the following two are equivalent:
+
+// Simultaneously dereference the pointer and 
+// access IncrementDistance().
+cp->IncrementDistance();
+
+// Dereference the pointer using *, then 
+// access IncrementDistance() with traditional 
+// dot notation.
+(*cp).IncrementDistance();
+The new operator allocates memory on the "heap" for a new Car. In general, this memory must be manually managed (deallocated) to avoid memory leaks in your program. This is dangerous, so it is generally preferable to create objects on the "stack", without using the "new" operator. Memory management is the primary focus of one of the later courses in this Nanodegree program, so we won't go into greater depth about the difference between stack and heap in this lesson.
+

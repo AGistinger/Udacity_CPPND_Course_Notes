@@ -1,0 +1,8 @@
+The major difference between const and constexpr, though, is that constexpr must be evaluated at compile time.
+
+The compiler will catch a constexpr variable that cannot be evaluated at compile time.
+
+const i = 10 * 15;  //evaulated at run time
+constexpr int i = 5; //evaluated at compile time
+
+constexpr int i = 5 * 10; //error can only be used at runtime

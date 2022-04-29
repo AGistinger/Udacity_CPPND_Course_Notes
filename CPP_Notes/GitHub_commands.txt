@@ -1,0 +1,16 @@
+[10:47 AM] Dennis, Blayne
+    btw in the terminal it's actually not many commands
+​[10:47 AM] Dennis, Blayne
+    git add ./path/to/file
+^^ this stages a file with changes for your next commit command. You can do this as many times as you want
+​[10:48 AM] Dennis, Blayne
+    git commit -m "your commit message"
+^^ pushes your added changes with a commit message to your computer's local repository
+​[10:49 AM] Dennis, Blayne
+    git push -u origin your_repository_name
+^^ pushes your committed changes to the github server's copy of the repository, which is what pull requests come from
+​[10:49 AM] Dennis, Blayne
+    So if you update inc/co.hpp:
+git add ./inc/co.hpp
+git commit -m "I improved co.hpp"
+git push -u origin adriannes_repo

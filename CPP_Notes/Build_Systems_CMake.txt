@@ -1,0 +1,60 @@
+Build Systems
+
+----Terminal Commands (Linux) (https://courses.cs.washington.edu/courses/cse391/17sp/bash.html)
+g++ (compiler) ex) g++ main.cpp
+-c (perform steps separately) ex) g++ -c main.cpp
+ls (list directory) ex) ls
+./a.out (run out executable file) ex) ./a.out
+main.o (object file) ex) g++ main.object
+* (operator wildcard, any matching file is selected) ex) g++ -c *.cpp 
+cd (change director) ex) cd multiple_files_example
+cd .. (up a director) ex) cd ..
+
+Ex)
+root@abc123defg:/home/workspace/multiple_files_example# g++ -c *.cpp
+root@abc123defg:/home/workspace/multiple_files_example# g++ *.o
+root@abc123defg:/home/workspace/multiple_files_example# ./a.out
+
+----CMake and Make----
+cmake_minimum_required(VERSION 3.5.1)
+
+set(CMAKE_CXX_STANDARD 14)
+
+These lines set the minimum cmake version required to 3.5.1 and set the environment variable CMAKE_CXX_STANDARD so CMake uses C++ 14. On your own computer, if you have a recent g++ compiler, you could use C++ 17 instead.
+
+CMake requires that we name the project, so you should choose a name for the project and then add the following line to CMakeLists.txt:
+
+project(<your_project_name>)
+
+Next, we want to add an executable to this project. You can do that with the add_executable command by specifying the executable name, along with the locations of all the source files that you will need. CMake has the ability to automatically find source files in a directory, but for now, you can just specify each file needed:
+
+add_executable(your_executable_name  path_to_file_1  path_to_file_2 ...)
+
+Hint: The source files you need are the three .cpp files in the src/ directory. You can specify the path relative to the CMakeLists.txt file, so src/main.cpp would work, for example.
+
+A typical CMake project will have a build directory in the same place as the top-level CMakeLists.txt. Make a build directory in the /home/workspace/cmake_example folder:
+
+
+root@abc123defg:/home/workspace/cmake_example# mkdir build
+root@abc123defg:/home/workspace/cmake_example# cd build
+From within the build directory, you can now run CMake as follows:
+
+
+root@abc123defg:/home/workspace/cmake_example/build# cmake ..
+root@abc123defg:/home/workspace/cmake_example/build# make
+
+The first line directs the cmake command at the top-level CMakeLists.txt file with ... This command uses the CMakeLists.txt to configure the project and create a Makefile in the build directory.
+
+In the second line, make finds the Makefile and uses the instructions in the Makefile to build the project.
+
+root@abc123defg:/home/workspace/cmake_example/build# ./your_executable_name
+
+Example)
+cmake_minimum_required(VERSION 3.5.1)
+
+set(CMAKE_CXX_STANDARD 14)
+
+project(ExampleProject)
+
+add_executable(example src/main.cpp src/vect_add_one.cpp src/increment_and_sum.cpp)
+

@@ -1,0 +1,82 @@
+CPP Intro
+-A-Star search algorithm to find two points on a map
+-Learn basics of C++
+-Learn A* Search with Ascii grid
+
+What is C++?
+-Programming language
+-Used for foundations of parts
+-Stuff that sticks in between the higher level software and the hardware
+-Used in just about everything
+-Started in the telecommunications industry
+-Java uses a base of C++
+-The opportunity rover was using C++
+-Autonomous driving was in C++
+
+Why Learn C++?
+-So many things that use it
+-Camera, Cell phones, Data science, self driving cars, mars rovers, etc
+-Language with a lot of features
+-Data structures and algorithms
+-A lot of languages only do one thing, C++ is very useful as a learning tool to learn how to program
+
+What's Different about C++?
+-Different from most modern programming langauges by working directly with the hardware
+-Provides strong abstraction mechanisms
+-Is very efficent
+
+Where is C++ Used?
+-Networking
+-Financing
+-Gaming
+-Cameras
+-Animation in Hollywood
+-Cars
+-Telecommunications
+-Energy, Oil/Wind turbines
+-Smart Watches
+-Smart Phones
+
+Why is C++ the Choice for Industry?
+-Embedded systems
+-Gaming
+-Finance
+-Self-driving cars
+-Flights
+-Ability to work with hardware
+-Ability to handle complexity with abstraction
+
+How to Learn C++:
+-You need an overview of the langauges
+-You can't understand the details until you understand the broader views
+-Don't obsess about one little thing
+-Instead of digging into the little details get an overview
+
+What should students focus on when learning?
+-Look at C++ as a modern langauges
+-It is not 1985 and it is not C it is better
+-Use the abstraction mechanisms
+-Use the STL
+-Use libraries
+-Learn the fundamentals (data structure, algorithms, etc)
+-Known games engines and libraries
+
+What is Orgin of the Core Guidelines?
+-Open source project core guidelines
+-Set of rules that say where you can get into trouble and have leaks
+-Provide tools that make sure you don't have leaks or buffer overflows
+
+How Should Programmers Use the Core Guidelines?
+-C++ is the Tool and the Core Guidelines is a guide to how to do C++ well
+-Group of Developers that create the core guidelines
+-It is on GitHub (lots of contributers)
+-What is good programming?
+-Organized by introduction (25 pages) philosophy
+-What is the overall aims and design?
+-This is the way you can use a for loop
+-This is how you can write your error handling
+-What we really want is a static analyzer that runs over your code
+-It will say this code breaks rule X and will link to the message and show you what to do
+-The guidelines will have a number and what is called and a description and examples and notes
+-Visual Studio has it built in (best one) right now
+-Some is coming in Clang Tidy

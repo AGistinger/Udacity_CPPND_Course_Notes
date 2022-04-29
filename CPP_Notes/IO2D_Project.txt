@@ -1,0 +1,96 @@
+build project
+-Go to desktop mode
+-go to visual studio code
+-open new terminal
+-cd cpp route project
+-mkdir build
+-cd build
+-cmake .. 
+-make
+-build the project
+-takes a few min
+
+run project
+-ls into the build
+-./OSM_A_star_search
+
+unit tests
+-<PROJECT_DIRECTORY>/test/utest_rp_a_star_search.cpp
+-run "./test"
+
+project code structure
+-IO2D graphics library
+-Main function reads the map data into the program with ReadFile()
+-RouteModel holds data FindClosestNode(), sub-class Node FindNeighbors(), distance()
+-FindClosestNode() provide start or end point, will find the closest nodes to the stored data in the coords
+-FindNeighbors() find the neighbors of the current node to add to the open list
+-distance() provides distance between 2 codes, to compute cost to travel to next node or heuristic function current node and goal
+-RoutePlanner class provides all methods to conduct the AStarSearch()
+-AStarSearch() starts while loop as long as the list of open nodes is not empty
+-NextNode() sorts open list and provides next node to explore
+-if goal found the ConstructFinalPath() is called, this method creates a vector of nodes in the path from start to end and can be used to render the final path
+-AddNeighbors() (no goal found) 
+	-calls FindNeighbors() on current node will populate with all valid neighbors
+		-Set the parent of the neighbor to the current node
+		-Set g value to the current g value + distance() to current
+		-Set h value using CalculateHValue()
+		-Add neighbor to open list
+		-Mark neighbor as visited
+-Render object
+
+Source files
+-cmake
+	-find required libraries
+-src
+	-working directory
+-test
+	-contains unit tests for project
+	-implemented with google test
+-thirdparty
+	-contains pugi test for street map data
+	-contains google test
+-CmakeLists contains cmake information
+
+the src directory
+The OSM data is read into the program.
+A RouteModel object is created to store the OSM data in usable data structures.
+A RoutePlanner object is created using the RouteModel. This planner will eventually carry out the A* search on the model data and store the search results in the RouteModel.
+The RouteModel data is rendered using the IO2D library.
+
+----IO2D Improvements:
+-Change CMakeLists.txt (change set cmake_minimum_required(Version 3.5.1)
+-Enable GPU for IO2D directory to enable
+-Don't need to use cmake after the first time, use only make after build files are configured
+-OSM_A_star_search (run file) display picture of area of map, super impose path upon it.
+-Another file called test
+-Reviewers get confused, if you see an issue with test then tell mentor and he will correct the issue
+-validate input for 0-100?? but it is a float?
+-Find closest node returns an instance of node, need to get the address via &
+-Member function for distance, if you have a node it has the distance function, tells you the distance from it to the object you give it.  current_node->(new_node);
+-FindNeighbors() is a member function of the current node object
+-you want the distance from the neighbor node to the current_node, coudl also do current->node(neighbor_node)
+-Compare(sort) for NextNode() use bool function.  Put the function above the NextNode function(), sort function passes in 2 values, 2 objects of the same type.
+-ConstructFinalPath() 
+	- Follow the chain of parents, You want to look where you came from starting at the end
+	-Keep looking up at the parent from the node you are until you get to the parent
+	-current_node is the end_node, go to the parent(previous)
+	-If you keep looking at the parent of every node you visited, you will see every node in the path
+	-The start is the node without a parent
+	-Use a while loop
+	-While the node I'm at has a parent keep doing this
+	-if ptr = nullptr, will evaluate to false, final node will have a nullptr
+	-Start with the current node, and keep looking at the parent of the node adding the distance of the node you visited and push each node you visited into path found.
+	-In the while loop, first iteration
+		-I'm current node 
+		-I want the distance between current node and node
+		-then I want to push that node back into the path
+		-Then move onto the next node, current_node == current_node->parent and check to see if that exists as you go through.
+-AStarSearch()
+	-How to implement Astar, you want to keep search searching while the list is not empty (open_list)
+	-Whhen you start Astar you need to put the start node in the open list
+	-You need to mark the start node as visited
+	-Then you want to grab the next node
+	-Every time you have a new node, you have to check if you reached the goal node
+	-If you are at the goal node, then you can construct your final path
+	-If you aren't there yet, you need to expand neighbors, and need to call add nieghbors on the node that you found.
+	-AStar will keep throwing more neighbors on the list, and sort the list, you will grab the most efficient entry from the list, if you find the path, then you find how you got there final_path, then Astar is done

@@ -1,0 +1,42 @@
+Concepts Introduction
+
+Compiled Langauges Vs Scripted Langauges
+
+Advantages and Disadvantages
+-Helps build stable and error free code
+-Checks that you followed your own rules
+-With a dynamic langauge you have to rely on completely testing your program
+-Abstraction Mechanism
+-Compiler can help you avoid stupid things
+-Compiler will tell you errors where a dynamic language will send you to debug saying an error
+-Compiler catches error systematically and early
+-You have to think harder when you write code
+-Generates much better code
+-Runs faster
+
+Advantages of a Dynamically Scripted Langauge
+-You can run quickly
+-You can run things even if they aren't completely correct
+-You can do experiments with data
+-It is slower
+-Systems don't ever use just one langauge
+
+C++ Types:
+-Objects an only be used in accordance to its definition
+-Statically typed
+-To deal with hardware you have to reduce typechecking
+-You can suppress the typechecking
+-ex) if you have a integer and you want to make it a pointer
+
+What is a Vector?
+-Linear sequence of continuously allocated memory
+-Linked list, hash sets, maps (lookup is much faster)
+
+Comments:
+-Say things that you can't do well in code
+-Code doesn't tell you what at high level is being done
+-"This is supposed to shell sort"
+-Helps explain a complicated piece of code
+
+2D Vector:
+	vector<vector<int>> 2d_vec {{1, 2}, {3, 4}};

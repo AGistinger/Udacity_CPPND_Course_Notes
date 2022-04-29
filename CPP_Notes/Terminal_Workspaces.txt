@@ -1,0 +1,6 @@
+C++ - Class Terminal Workspaces
+
+When using a terminal workspace for the C++ course (Linux Terminal)
+-Click "New Terminal"
+-execute terminal command "g++ main.cpp"
+-execute terminal command "./a.out"

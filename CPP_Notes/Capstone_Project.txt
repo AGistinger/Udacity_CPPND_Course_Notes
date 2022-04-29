@@ -1,0 +1,46 @@
+To-Do:
+Write a read-me for the project
+	-read-me must have instructions for setup
+	-read-me must state which project has been chosen along with class structure and expected outcome.
+	-read-me must include information about which ruberic points were completed
+Compiling and testing
+	-The project must compile and run with no errors
+(Must meet 5 of the items below)
+Loops, fuctions, I/O
+	-Project must demonstrate understanding of control structures and functions
+	-Project reads from a file and processes data or writes to a file(COMPLETE)
+	-Project handles user input
+-OOP
+	-project code is organized into classes with class attributes(COMPLETE)
+	-classes use correct access specifiers for class members(COMPLETE)
+	-class contructors use initialization lists(COMPLETE)
+	-classes are abstracted to implement details from their interfaces(COMPLETE)
+	-classes encapsulate behavior(COMPLETE)
+	-class follow inheritance hierarchy
+	-overloaded functions allow the same functions to operate with different parameters
+	-derived functions override virtual base class functions
+	-templates generalize functions in the project
+-Memory Management
+	-project makes use of references in function declarations(COMPLETE)
+	-project uses destructors appropriately
+	-project uses scope/resource acquisiton RAII where appropriately
+	-project follows the rule of 5(COMPLETE)
+	-project uses move semantics to move data instead of copying
+	-project uses smart pointers instead of raw pointers
+-Concurrency
+	-project uses multithreading
+	-a promise and future is used in the project
+	-a mutex or lock is used in the project
+	-a condition variable is used in the project
+	
+Turn snake game into a fish game:
+-Have 3 different fish images read from a file along with the user character fish
+-Have the 3 different fish have different sizes and randomly appear from the left and right sides of the screen and move in a straight line
+-Each time the user eats a smaller fish it gets slightly bigger(COMPLETE)
+-Each time the user tries to run into a larger fish the user is killed(COMPLETE)
+-Once the user is the largest fish the user wins and the game is over
+-Background should be changed to blue or an image(COMPLETE)
+
+Used background image: Image by <a href="https://pixabay.com/users/Jan-Mallander-615621/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=567688">Jan Mallander</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=567688">Pixabay</a>
+
+Image by Jan Mallander from Pixabay 
