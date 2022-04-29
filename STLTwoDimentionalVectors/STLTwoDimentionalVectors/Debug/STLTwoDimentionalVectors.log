@@ -1,0 +1,4 @@
+﻿  STLTwoDimentionalVectors.cpp
+C:\Users\gistadr\source\repos\STLTwoDimentionalVectors\STLTwoDimentionalVectors\STLTwoDimentionalVectors.cpp(39,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\gistadr\source\repos\STLTwoDimentionalVectors\STLTwoDimentionalVectors\STLTwoDimentionalVectors.cpp(41,26): warning C4018: '<': signed/unsigned mismatch
+  STLTwoDimentionalVectors.vcxproj -> C:\Users\gistadr\source\repos\STLTwoDimentionalVectors\Debug\STLTwoDimentionalVectors.exe
