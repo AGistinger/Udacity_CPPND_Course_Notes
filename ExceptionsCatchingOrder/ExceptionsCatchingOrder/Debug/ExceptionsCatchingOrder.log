@@ -1,0 +1,3 @@
+﻿  ExceptionsCatchingOrder.cpp
+C:\Users\gistadr\source\repos\ExceptionsCatchingOrder\ExceptionsCatchingOrder\ExceptionsCatchingOrder.cpp(41,2): warning C4286: 'const std::bad_alloc &': is caught by base class ('const std::exception &') on line 36
+  ExceptionsCatchingOrder.vcxproj -> C:\Users\gistadr\source\repos\ExceptionsCatchingOrder\Debug\ExceptionsCatchingOrder.exe

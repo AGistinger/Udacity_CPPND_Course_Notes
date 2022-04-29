@@ -1,0 +1,3 @@
+﻿  Exceptions.cpp
+C:\Users\gistadr\source\repos\Exceptions\Exceptions\Exceptions.cpp(52,21): warning C4101: 'e': unreferenced local variable
+  Exceptions.vcxproj -> C:\Users\gistadr\source\repos\Exceptions\Debug\Exceptions.exe
